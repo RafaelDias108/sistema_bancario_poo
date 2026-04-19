@@ -1,10 +1,19 @@
-import Transacao, Conta
+from __future__ import annotations
+from classes.Transacao import Transacao
+from typing import TYPE_CHECKING
 
+if TYPE_CHECKING:
+    from classes.Conta import Conta
 
 class Cliente:
-    def __init__(self, endereco: str):
+    def __init__(self, nome: str, endereco: str):
+        self._nome = nome
         self._endereco = endereco
-        self._contas: list = []
+        self._contas: list[Conta] = []
+
+    @property
+    def nome(self) -> str:
+        return self._nome
 
     @property
     def endereco(self) -> str:
@@ -16,7 +25,7 @@ class Cliente:
 
     @staticmethod
     def realizar_transacao(conta: Conta, transacao: Transacao):
-        transacao.registrar(conta=conta)
+        return transacao.registrar(conta=conta)
 
     def adicionar_conta(self, conta: Conta):
         self._contas.append(conta)
