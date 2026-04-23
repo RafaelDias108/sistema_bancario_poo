@@ -80,7 +80,7 @@ class SistemaBancario:
             print(Panel("Cliente não encontrado.", title="Notificação", border_style="red", width=40))
             return
 
-        valor = input("Digite o valor do saque: ").strip()
+        valor = input("Digite o valor do saque: ").strip().replace(".", "").replace(",", ".")
         if len(valor) == 0:
             print(Panel("Valor do saque não informado.", title="Notificação", border_style="red", width=40))
             return
